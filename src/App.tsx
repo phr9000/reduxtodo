@@ -1,5 +1,8 @@
 import { useState } from "react";
 import "./App.css";
+import CreateTodo from "./components/CreateTodo";
+import TodoList from "./components/TodoList";
+import RemoveBtn from "./components/RemoveBtn";
 
 function App() {
   const [todos, setTodos] = useState([
@@ -8,7 +11,7 @@ function App() {
     { id: 3, text: "text3", checked: false },
   ]);
 
-  const [inputValue, setInputValue] = useState("");
+
 
   const appContainer = {
     textAlign: "center" as const,
@@ -17,71 +20,49 @@ function App() {
     padding: "20px",
   };
 
-  const writeDownContainer = {
-    display: "flex",
-  };
-
-  const listContainer = {
-    display: "flex",
-    flexDirection: "column" as const,
-    listStyle: "none",
-    padding: "0px",
-  };
-
   // checkbox handle
-  const handleCheck = (id: number) => {
-    setTodos(
-      todos.map((todo) =>
-        todo.id === id ? { ...todo, checked: !todo.checked } : todo
-      )
-    );
-  };
+  // const handleCheck = (id: number) => {
+  //   setTodos(
+  //     todos.map((todo) =>
+  //       todo.id === id ? { ...todo, checked: !todo.checked } : todo
+  //     )
+  //   );
+  // };
 
   // 삭제 handle
   const handleDelete = () => {
-    setTodos(todos.filter(todo => !todo.checked));
+    setTodos(todos.filter((todo) => !todo.checked));
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.target.value);
+  const addTodo = (text: string) => {
+    console.log("text >>>>>>>>>", text);
+
+    setTodos((prev) => [
+      ...prev,
+      { id: new Date().getTime(), text, checked: false },
+    ]);
   };
 
-  // 전송 handle
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (inputValue.trim() === "") return;
-    setTodos([...todos, { id: Date.now(), text: inputValue, checked: false }]);
-    setInputValue('');
+  const onChangeCheck = (idx: number, checked: boolean) => {
+    setTodos((prevTodos) => {
+      const nextTods = [...prevTodos];
+      nextTods[idx].checked = checked;
+      return nextTods;
+    });
+  };
+
+  const onRemoveChecked = () => {
+    // setTodos(todos.filter((todo) => !todo.checked));
+     setTodos((prevTodos) => prevTodos.filter((todo) => !todo.checked));
   };
 
   return (
     <div className="App">
       <div style={appContainer}>
-        <form style={writeDownContainer} onSubmit={handleSubmit}>
-          <input
-            type="text"
-            placeholder="todo 사항을 입력해주세요"
-            onChange={handleChange}
-            value={inputValue}
-          />
-          <button
-            type="submit"
-            style={{ display: "block", minWidth: "fit-content" }}
-          >
-            전송
-          </button>
-        </form>
-        <ul style={listContainer}>
-          {todos.map((todo) => (
-            <li key={todo.id}>
-              <input type="checkbox" checked={todo.checked} onChange={()=> handleCheck(todo.id)} />
-              {todo.text}
-            </li>
-          ))}
-        </ul>
-        <button type="button" onClick={handleDelete}>
-          선택된 항목 삭제
-        </button>
+        <CreateTodo addTodo={addTodo} />
+        {/* <Actions /> */}
+        <TodoList todos={todos} onChangeCheck={onChangeCheck} />
+        <RemoveBtn onRemoveChecked={onRemoveChecked} />
       </div>
     </div>
   );
