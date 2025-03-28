@@ -1,3 +1,4 @@
+import { useSelector } from "react-redux";
 interface Todo {
   id: number;
   text: string;
@@ -7,8 +8,7 @@ interface Todo {
 interface Props {
   todos?: Todo[];
   onChangeCheck: (idx: number, checked: boolean) => void;
-};
-
+}
 
 function TodoList({ todos, onChangeCheck }: Props) {
   const listContainer = {
@@ -33,6 +33,6 @@ function TodoList({ todos, onChangeCheck }: Props) {
       ))}
     </ul>
   );
-};
+}
 
 export default TodoList;

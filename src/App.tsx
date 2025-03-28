@@ -3,6 +3,8 @@ import "./App.css";
 import CreateTodo from "./components/CreateTodo";
 import TodoList from "./components/TodoList";
 import RemoveBtn from "./components/RemoveBtn";
+import { useSelector, useDispatch } from "react-redux";
+import { createTodo, todoList, removeBtn } from "./slices/create";
 
 function App() {
   const [todos, setTodos] = useState([
@@ -10,8 +12,6 @@ function App() {
     { id: 2, text: "text2", checked: false },
     { id: 3, text: "text3", checked: false },
   ]);
-
-
 
   const appContainer = {
     textAlign: "center" as const,

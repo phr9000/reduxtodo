@@ -1,5 +1,5 @@
 import { useState} from "react";
-
+import { useSelector } from "react-redux";
 interface Props {
   addTodo: (text: string) => void;
 }
