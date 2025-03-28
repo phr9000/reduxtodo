@@ -1,5 +1,3 @@
-import { useState, useEffect } from "react";
-
 interface Todo {
   id: number;
   text: string;
@@ -19,38 +17,6 @@ function TodoList({ todos, onChangeCheck }: Props) {
     listStyle: "none",
     padding: "0px",
   };
-
-
-  const [checked, setChecked] = useState<number[]>([]);
-
-  // checkbox handle
-  const handleCheck = (id: number, checked: boolean) => {
-    // setTodos(
-    //   todos.map((todo) =>
-    //     todo.id === id ? { ...todo, checked: !todo.checked } : todo
-    //   )
-    // );
-
-    // TODO: todo id setChecked에 담기
-
-    // if (checked) {
-    //   setChecked((prev) => [...prev, id]);
-
-    //   return;
-    // }
-
-    // if (!checked && todos.includes(id)) {
-    //   setChecked(todos.filter((item) => item !=== id));
-    //   return;
-    // }
-
-    // return; 
-
-  };
-
-  useEffect(()=> {
-    console.log('todos>>>>>>>>', todos);
-  }, []);
 
   return (
     <ul style={listContainer}>

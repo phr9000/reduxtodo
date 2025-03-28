@@ -20,20 +20,6 @@ function App() {
     padding: "20px",
   };
 
-  // checkbox handle
-  // const handleCheck = (id: number) => {
-  //   setTodos(
-  //     todos.map((todo) =>
-  //       todo.id === id ? { ...todo, checked: !todo.checked } : todo
-  //     )
-  //   );
-  // };
-
-  // 삭제 handle
-  const handleDelete = () => {
-    setTodos(todos.filter((todo) => !todo.checked));
-  };
-
   const addTodo = (text: string) => {
     console.log("text >>>>>>>>>", text);
 
@@ -53,6 +39,7 @@ function App() {
 
   const onRemoveChecked = () => {
     // setTodos(todos.filter((todo) => !todo.checked));
+    // 비동기 고려 아래 코드로 적용
      setTodos((prevTodos) => prevTodos.filter((todo) => !todo.checked));
   };
 
