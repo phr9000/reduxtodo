@@ -1,11 +1,11 @@
-import { useSelector } from "react-redux";
-interface Props {
-  onRemoveChecked: () => void;
-}
+import { useDispatch } from "react-redux";
+import { removeCheckedTodos } from "../slices/create";
 
-function RemoveBtn({ onRemoveChecked }: Props) {
+function RemoveBtn() {
+  const dispatch = useDispatch();
+
   return (
-    <button type="button" onClick={onRemoveChecked}>
+    <button onClick={() => dispatch(removeCheckedTodos())}>
       선택된 항목 삭제
     </button>
   );

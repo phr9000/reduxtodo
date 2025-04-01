@@ -25,7 +25,7 @@ function TodoList({ todos, onChangeCheck }: Props) {
           <input
             type="checkbox"
             checked={todo.checked}
-            onChange={(e) => onChangeCheck(idx, e.currentTarget.checked)}
+            onChange={(e) => onChangeCheck(todo.id, e.currentTarget.checked)}
             name={todo.text}
           />
           <label htmlFor={todo.text}>{todo.text}</label>
