@@ -57,8 +57,13 @@ export const todoSlice = createSlice({
       state.todos = state.todos.filter((todo) => !todo.checked);
     },
   },
+  selectors: {
+    selectTodo: (state) => state.todos,
+  }
 });
 
 export const { createTodo, toggleTodo, removeCheckedTodos } = todoSlice.actions;
 
 export default todoSlice.reducer;
+
+export const { selectTodo } = todoSlice.selectors;

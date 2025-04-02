@@ -8,9 +8,6 @@ import RemoveBtn from "./components/RemoveBtn";
 function App() {
   const dispatch = useDispatch();
 
-  // useState 대신 Redux 상태 불러오기
-  const todos = useSelector((state: RootState) => state.todo.todos);
-
   // // 할 일 추가 함수
   // const addTodo = (text: string) => {
   //   dispatch(createTodo(text));
@@ -30,7 +27,7 @@ function App() {
     <div className="App">
       <div style={{ textAlign: "center", margin: "0 auto", width: "150px", padding: "20px" }}>
         <CreateTodo />
-        <TodoList todos={todos} onChangeCheck={onChangeCheck} />
+        <TodoList onChangeCheck={onChangeCheck} />
         <RemoveBtn />
       </div>
     </div>
