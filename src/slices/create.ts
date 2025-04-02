@@ -20,16 +20,7 @@ export const todoSlice = createSlice({
   name: "todo",
   initialState, // 초기 상태 적용
   reducers: {
-    //     createTodo: (state) => {
-    //       state.value += 1;
-    //     },
-    //     todoList: (state) => {
-    //       state.value -= 1;
-    //     },
-    //     removeBtn: (state) => {
-    //       state.value += 1;
-    //     },
-    //   },
+
     // 새 할 일 추가
     createTodo: (state, action: PayloadAction<string>) => {
       const newTodo: TodoState = {

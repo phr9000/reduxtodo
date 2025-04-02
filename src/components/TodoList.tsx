@@ -1,18 +1,19 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { RootState } from '../app/store';
 
-import {selectTodo} from '../../src/slices/create';
+import { toggleTodo, selectTodo } from "../../src/slices/create";
 
 
-interface Props {
-  onChangeCheck: (idx: number, checked: boolean) => void;
-}
+// interface Props {
+//   onChangeCheck: (idx: number, checked: boolean) => void;
+// }
 
 
 
-function TodoList({ onChangeCheck }: Props) {
+function TodoList() {
   // todo data
   // const todoData = useSelector((state: RootState) => state.todo.todos);
+  const dispatch = useDispatch();
 
   const todoData = useSelector(selectTodo);
   const listContainer = {
@@ -20,6 +21,7 @@ function TodoList({ onChangeCheck }: Props) {
     flexDirection: "column" as const,
     listStyle: "none",
     padding: "0px",
+    margin: "2px"
   };
 
   return (
@@ -30,7 +32,11 @@ function TodoList({ onChangeCheck }: Props) {
             <input
               type="checkbox"
               checked={todo.checked}
-              onChange={(e) => onChangeCheck(todo.id, e.currentTarget.checked)}
+              onChange={(e) =>
+                dispatch(
+                  toggleTodo({ id: todo.id, checked: e.currentTarget.checked })
+                )
+              }
               name={todo.text}
             />
             <label htmlFor={todo.text}>{todo.text}</label>

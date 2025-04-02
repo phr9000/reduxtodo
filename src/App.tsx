@@ -25,9 +25,9 @@ function App() {
 
   return (
     <div className="App">
-      <div style={{ textAlign: "center", margin: "0 auto", width: "150px", padding: "20px" }}>
+      <div style={{ textAlign: "center", margin: "0 auto", padding: "20px" }}>
         <CreateTodo />
-        <TodoList onChangeCheck={onChangeCheck} />
+        <TodoList />
         <RemoveBtn />
       </div>
     </div>
