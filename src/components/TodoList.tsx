@@ -29,17 +29,23 @@ function TodoList() {
       <ul style={listContainer}>
         {todoData?.map((todo, idx) => (
           <li key={todo.id}>
-            <input
-              type="checkbox"
-              checked={todo.checked}
-              onChange={(e) =>
-                dispatch(
-                  toggleTodo({ id: todo.id, checked: e.currentTarget.checked })
-                )
-              }
-              name={todo.text}
-            />
-            <label htmlFor={todo.text}>{todo.text}</label>
+            <label htmlFor={`todo-${todo.id}`}>
+              <input
+                type="checkbox"
+                checked={todo.checked}
+                onChange={(e) =>
+                  dispatch(
+                    toggleTodo({
+                      id: todo.id,
+                      checked: e.currentTarget.checked,
+                    })
+                  )
+                }
+                name={todo.text}
+                id={`todo-${todo.id}`}
+              />
+              {todo.text}
+            </label>                                                            
           </li>
         ))}
       </ul>
